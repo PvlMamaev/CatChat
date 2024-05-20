@@ -11,6 +11,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         // ссылку на используемый фрагмент. Хз по какой причине. Может быть фрагмент не надуется или еще че нидь.
         val navController = navHostFragment.navController
         // После того как мы достали ссылку на фрагмент, мы достаем из него контроллер
+
+        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavView.setupWithNavController(navController)
 
         // --------Строим конфигурацию, связывающую панель инструментов с графом навигации-------
         val builder = AppBarConfiguration.Builder(navController.graph)
