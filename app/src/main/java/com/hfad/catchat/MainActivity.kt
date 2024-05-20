@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,12 +36,16 @@ class MainActivity : AppCompatActivity() {
         // После того как мы достали ссылку на фрагмент, мы достаем из него контроллер
 
         // --------Строим конфигурацию, связывающую панель инструментов с графом навигации-------
+        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         val builder = AppBarConfiguration.Builder(navController.graph)
+        builder.setOpenableLayout(drawer)
         //
         val appBarConfiguration = builder.build()
         //
         toolBar.setupWithNavController(navController, appBarConfiguration)
         //
+        val navView = findViewById<NavigationView>(R.id.nav_view)
+        NavigationUI.setupWithNavController(navView, navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
